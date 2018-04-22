@@ -8,6 +8,16 @@
 $lblClass = "col-md-2";
 $eltClass = "col-md-4";
 $btnClass = "btn btn-success";
+
+if($_POST['regpassword'] === $_POST['redopassword'])
+{
+    $form = new Form($GLOBALS['appurl']."/login");
+}
+else
+{
+    $form = new Form($GLOBALS['appurl']."/login/registration");
+}
+
 $form = new Form($GLOBALS['appurl']."/login");
 $button = new ButtonBuilder();
 echo $form->input()->label('E-Mail')->name('regemail')->type('email')->lblClass($lblClass)->eltClass($eltClass);
