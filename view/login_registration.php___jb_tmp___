@@ -1,0 +1,26 @@
+<?php
+
+  /**
+   * Registratons-Formular
+   * Das Formular wird mithilfe des Formulargenerators erstellt.
+   */
+  $lblClass = "col-md-2";
+  $eltClass = "col-md-4";
+  $btnClass = "btn btn-success";
+  if($_POST[''] === $loginRepository->password)
+  {
+      $form = new Form($GLOBALS['appurl']."/login");
+  }
+  else
+    {
+      $form = new Form($GLOBALS['appurl']."/login/registration");
+  }
+  $button = new ButtonBuilder();
+  echo $form->input()->label('E-Mail')->name('regemail')->type('email')->lblClass($lblClass)->eltClass($eltClass);
+  echo $form->input()->label('Passwort')->name('regpassword')->type('password')->lblClass($lblClass)->eltClass($eltClass);
+  echo $form->input()->label('gleiche Passwort')->name('redopassword')->type('password')->lblClass($lblClass)->eltClass($eltClass);
+  echo $button->start($lblClass, $eltClass);
+  echo $button->label('Registration')->name('regsubmit')->type('submit')->class('btn-success');
+  echo $button->end();
+  echo $form->end();
+?>
