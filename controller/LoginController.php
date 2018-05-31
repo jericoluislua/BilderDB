@@ -11,54 +11,34 @@ require_once '../repository/LoginRepository.php';
      */
     public function index()
     {
-      $loginRepository = new LoginRepository();
-      $view = new View('login_index');
+      $view = new View('login');
       $view->title = 'Bilder-DB';
       $view->heading = 'Login';
       $view->display();
-    }
-    /**
-     * Zeigt das Registrations-Formular an
-	 * Dispatcher: /login/registration
-     */
-    public function login()
-    {
 
-        if(isset($_POST['logincheck']))
-        {
-            $loginemail = $_POST['loginemail'];
-            $loginpassword  = $_POST['loginpassword'];
-            //??
-            if(!empty($_POST['loginpassword']) & !empty($_POST['loginemail']))
-            {
-                $LoginRepository = new LoginRepository();
-                $valid = $LoginRepository->login($loginemail, $loginpassword);
-                if(!empty($valid))
-                {
-                    $_SESSION['LoggedIn'] = $loginemail;
-                    header('Location: /');
-                }
-                else
-                {
-                    header('Location: /');
-                }
-            }
-        }
-    }
-    public function registration()
-    {
-      $view = new View('login_registration');
-      $view->title = 'Bilder-DB';
-      $view->heading = 'Registration';
-      $view->display();
+      if(isset($_POST['logincheck']))
+      {
+          $loginemail = $_POST['loginemail'];
+          $loginpassword  = $_POST['loginpassword'];
 
-        if (isset($_POST['regsubmit'])) {
-            $email = $_POST['regemail'];
-            $password  = $_POST['regpassword'];
-            $LoginRepository = new LoginRepository();
-            $LoginRepository->create($email, $password);
-        }
-
+          if(!empty($_POST['loginpassword']) & !empty($_POST['loginemail']))
+          {
+              $LoginRepository = new LoginRepository();
+              $valid = $LoginRepository->login($loginemail, $loginpassword);
+              if(!empty($valid))
+              {
+                  $_SESSION['LoggedIn'] = $loginemail;
+                  header('Location: /');
+              }
+              else{
+                  echo 'Wrong Password. Try Again.';
+              }
+          }
+          else{
+              echo 'No Password. Try Again.';
+          }
+      }
     }
+
 }
 ?>

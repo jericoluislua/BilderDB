@@ -34,8 +34,6 @@
       $uri = strtok($uri, '?'); // Erstes ? und alles danach abschneiden
       $uri = trim($uri, '/'); // Alle / am anfang und am Ende der URI abschneiden
       $uriFragments = explode('/', $uri); // In einzelteile zerlegen
-	  // fix schf: urlpfadteile oberhalb approot ignorieren
-	  $uriFragments = array_slice($uriFragments, $GLOBALS['numAppurlFragments']);
 
       // Den Namen des gewünschten Controllers ermitteln
       $controllerName = 'DefaultController';

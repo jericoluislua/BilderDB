@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
  * Die index.php Datei ist der Einstiegspunkt des MVC. Hier werden zuerst alle
  * vom Framework benötigten Klassen geladen und danach wird die Anfrage dem
@@ -9,9 +9,6 @@
  * auf eine bestehende Datei zeigen hierhin umgeleitet.
  */
 
-  // fix schf: approot für url
-  $GLOBALS['appurl'] = '/m151/bilderdb_vorlage_bbcmvc/public';
-  $GLOBALS['numAppurlFragments'] = 3;
 
   require_once '../lib/Dispatcher.php';
   require_once '../lib/formbuilder/FormBuilder.php';
