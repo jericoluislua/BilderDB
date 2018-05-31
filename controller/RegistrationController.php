@@ -16,34 +16,32 @@ class RegistrationController
         $view->display();
 
         if (isset($_POST['regsubmit'])) {
+            $pregex = "^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\W])(?=\S*[\d])\S*$^";
             $uname = $_POST['reguname'];
             $email = $_POST['regemail'];
             $password  = $_POST['regpassword'];
             $redopass = $_POST['redopassword'];
             if ($password == $redopass){
-                $statement = "SELECT * FROM user WHERE (username = '$uname' OR email = '$email')";
-                $res = mysqli_query(self::$connection,$statement);
-
-                if(mysqli_num_rows($res) > 0){
-                    $row = mysqli_fetch_assoc($res);
-                    if($uname == $row['username']){
-                        echo 'Username already exists.';
-                    }
-                    else if($email == $row['email']){
+                if(preg_match($pregex, $password)){
+                    $LoginRepository = new LoginRepository();
+                    if($LoginRepository->existingEmail($email) == true){
                         echo 'Email already exists.';
                     }
-                    else if($uname != $row['username'] && $email != $row['email']){
-                        $LoginRepository = new LoginRepository();
+                    if($LoginRepository->existingUsername($uname) == true){
+                        echo '<br> Username already exists.';
+                    }
+                    if($LoginRepository->existingEmail($email) == false && $LoginRepository->existingUsername($uname) == false){
                         $LoginRepository->create($uname, $email, $password);
                         header('Location: /login');
                     }
                 }
-
+                else{
+                    echo 'Your password needs to have the following: 1 Upper and lowercase, a digit, a special character and consists of 8 characters.';
+                }
             }
-            else{
-                echo 'Those passwords did not match. Try again.';
+            else if($password == $redopass){
+                echo 'The passwords did not match. Try again.';
             }
         }
     }
-
 }

@@ -14,7 +14,6 @@ class LoginRepository extends Repository
         $password = password_hash($password, PASSWORD_DEFAULT);
         $query = "INSERT INTO $this->tableName(username, email, password) VALUES (?, ?, ?)";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-
         $statement->bind_param('sss', $uname, $email, $password);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
@@ -46,5 +45,32 @@ class LoginRepository extends Repository
         return false;
     }
 
+
+    public function existingEmail($email)
+    {
+        $query = "SELECT * FROM user WHERE (email = '$email')";
+        $res = mysqli_query(ConnectionHandler::getConnection(), $query);
+
+        if (mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($email == $row['email']) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function existingUsername($uname){
+        $query = "SELECT * FROM user WHERE (username = '$uname')";
+        $res = mysqli_query(ConnectionHandler::getConnection(),$query);
+
+        if(mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($uname == $row['username']) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>
