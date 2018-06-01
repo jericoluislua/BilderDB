@@ -24,9 +24,11 @@
     public function build()
     {
 	  if ($this->type == "link") {
-        $result = "<a name='{$this->name}' href='"."{$this->link}' class='btn {$this->class}'>{$this->label}</a>";
-	  } else {
-        $result = "<input name='{$this->name}' type='{$this->type}' class='btn {$this->class}' value='{$this->label}' />\n";
+	      $result = "<a name='{$this->name}' href='"."{$this->link}' class='btn {$this->class}'>{$this->label}</a>";
+	  } else if($this->type == "button"){
+	      $result = "<input name='{$this->name}' type='{$this->type}' class='{$this->class}' value='{$this->label}' />\n";
+      } else{
+	      $result = "<input name='{$this->name}' type='{$this->type}' class='btn {$this->class}' value='{$this->label}' />\n";
 	  }
 	  return $result;
     }

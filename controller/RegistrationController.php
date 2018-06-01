@@ -16,6 +16,7 @@ class RegistrationController
         $view->display();
 
         if (isset($_POST['regsubmit'])) {
+            //passwort regex: https://stackoverflow.com/questions/8141125/regex-for-password-php
             $pregex = "^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\W])(?=\S*[\d])\S*$^";
             $uname = $_POST['reguname'];
             $email = $_POST['regemail'];

@@ -31,7 +31,7 @@ require_once '../repository/LoginRepository.php';
                   header('Location: /');
               }
               else{
-                  echo 'Wrong Password. Try Again.';
+                  echo 'Wrong Password or Email. Try Again.';
               }
           }
           else{
