@@ -11,7 +11,7 @@ $eltClass = "col-md-4";
 $btnClass = "btn btn-success";
 $form = new Form("/user");
 $button = new ButtonBuilder();
-echo $form->input()->label('Username')->name('reguname')->type('text')->lblClass($lblClass)->eltClass($eltClass);
+echo $form->input()->label('Username')->name('uname')->type('text')->lblClass($lblClass)->eltClass($eltClass);
 echo $form->input()->label('E-Mail')->name('email')->type('email')->lblClass($lblClass)->eltClass($eltClass);
 echo $form->input()->label('Password')->name('password')->type('password')->lblClass($lblClass)->eltClass($eltClass);
 echo $button->start($lblClass, $eltClass);

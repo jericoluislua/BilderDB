@@ -8,7 +8,8 @@
 
 class UserController
 {
-    public function index(){
+    public function index()
+    {
 
         //$userRepository = ;
         $view = new View('user');
@@ -17,4 +18,5 @@ class UserController
         //$view->users = $userRepository->readAll();
         $view->display();
     }
+
 }

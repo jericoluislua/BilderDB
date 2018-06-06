@@ -19,10 +19,6 @@ class LoginRepository extends Repository
             throw new Exception($statement->error);
         }
         return $statement->insert_id;
-        //else if($redoPassword !== $password){
-        //    echo "Wrong password.";
-        //    return false;
-        //}
 
     }
 
@@ -45,32 +41,48 @@ class LoginRepository extends Repository
         return false;
     }
 
-
     public function existingEmail($email)
     {
-        $query = "SELECT * FROM user WHERE (email = '$email')";
-        $res = mysqli_query(ConnectionHandler::getConnection(), $query);
-
-        if (mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_assoc($res);
-            if ($email == $row['email']) {
-                return true;
-            }
+        $query = "SELECT $this->id FROM $this->tableName WHERE email = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $email);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        if($result->num_rows >= 1){
+            return true;
         }
         return false;
     }
 
     public function existingUsername($uname){
-        $query = "SELECT * FROM user WHERE (username = '$uname')";
-        $res = mysqli_query(ConnectionHandler::getConnection(),$query);
+        $query = "SELECT $this->id FROM $this->tableName WHERE username = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
 
-        if(mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_assoc($res);
-            if ($uname == $row['username']) {
-                return true;
-            }
+        $statement->bind_param('s', $uname);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        if($result->num_rows >= 1){
+            return true;
         }
         return false;
     }
+
+    public function changeEmail($email){
+        $query = "UPDATE $this->tableName SET email = $email WHERE user.id = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+    }
+
+    public function changeUsername($uname){
+        $query = "UPDATE $this->tableName SET username = $uname WHERE user.id = ?";
+    }
+
+    public function changePassword($password){
+        $query = "UPDATE $this->tableName SET password = $password WHERE user.id = ?";
+    }
+
 }
 ?>
