@@ -13,8 +13,7 @@ class PostController
         $view->title = 'Bilder-DB';
         $view->heading = 'Upload';
         $view->display();
-    }
 
-    public function fileUpload(){
+
     }
 }
