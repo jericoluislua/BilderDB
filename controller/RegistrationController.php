@@ -9,6 +9,10 @@ require_once '../repository/LoginRepository.php';
 
 class RegistrationController
 {
+    /**
+     * Default-Seite für das Registration: Zeigt das Registration-Formular an
+     * Dispatcher: /registration
+     */
     public function index(){
         $view = new View('registration');
         $view->title = 'Bilder-DB';
@@ -40,7 +44,7 @@ class RegistrationController
                     echo 'Your password needs to have the following: 1 Upper and lowercase, a digit, a special character and consists of 8 characters.';
                 }
             }
-            else if($password == $redopass){
+            else if($password != $redopass){
                 echo 'The passwords did not match. Try again.';
             }
         }

@@ -72,16 +72,16 @@ class LoginRepository extends Repository
     }
 
     public function changeEmail($email){
-        $query = "UPDATE $this->tableName SET email = $email WHERE user.id = ?";
+        $query = "UPDATE $this->tableName SET email = $email WHERE id = ?";
         $statement = ConnectionHandler::getConnection()->prepare($query);
     }
 
     public function changeUsername($uname){
-        $query = "UPDATE $this->tableName SET username = $uname WHERE user.id = ?";
+        $query = "UPDATE $this->tableName SET username = $uname WHERE id = ?";
     }
 
     public function changePassword($password){
-        $query = "UPDATE $this->tableName SET password = $password WHERE user.id = ?";
+        $query = "UPDATE $this->tableName SET password = $password WHERE id = ?";
     }
 
 }

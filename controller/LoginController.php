@@ -34,9 +34,6 @@ require_once '../repository/LoginRepository.php';
                   echo 'Wrong Password or Email. Try Again.';
               }
           }
-          else{
-              echo 'No Password. Try Again.';
-          }
       }
     }
 

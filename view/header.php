@@ -36,6 +36,7 @@
                   echo "
                           <li><a href = '/user' >User</a></li>  
                           <li><a href = 'post' >Post a Picture</a></li>
+                          <li><a href = '/gallery' >Gallery</a></li>
                           <li><a href = '/logout' >Logout</a></li>
                           ";
               }
