@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1270ec54-8176-40f9-960f-4009373a9fb0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/controller/LoginController.php" afterPath="$PROJECT_DIR$/controller/LoginController.php" />
       <change beforePath="$PROJECT_DIR$/controller/RegistrationController.php" afterPath="$PROJECT_DIR$/controller/RegistrationController.php" />
-      <change beforePath="$PROJECT_DIR$/lib/formbuilder/FormBuilder.php" afterPath="$PROJECT_DIR$/lib/formbuilder/FormBuilder.php" />
-      <change beforePath="$PROJECT_DIR$/repository/FileRepository.php" afterPath="$PROJECT_DIR$/repository/FileRepository.php" />
-      <change beforePath="$PROJECT_DIR$/repository/LoginRepository.php" afterPath="$PROJECT_DIR$/repository/LoginRepository.php" />
-      <change beforePath="$PROJECT_DIR$/view/header.php" afterPath="$PROJECT_DIR$/view/header.php" />
-      <change beforePath="$PROJECT_DIR$/view/post.php" afterPath="$PROJECT_DIR$/view/post.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,21 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegistrationController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegistrationController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/RegistrationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="42" column="21" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+            <state relative-caret-position="267">
+              <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            <state relative-caret-position="204">
+              <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -154,10 +148,10 @@
         <option value="$PROJECT_DIR$/lib/formbuilder/FormBuilder.php" />
         <option value="$PROJECT_DIR$/lib/formbuilder/FileBuilder.php" />
         <option value="$PROJECT_DIR$/lib/formbuilder/CheckBoxBuilder.php" />
-        <option value="$PROJECT_DIR$/controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/controller/GalleryController.php" />
         <option value="$PROJECT_DIR$/view/post.php" />
         <option value="$PROJECT_DIR$/view/gallery.php" />
+        <option value="$PROJECT_DIR$/controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/controller/LoginController.php" />
       </list>
     </option>
@@ -280,12 +274,12 @@
       <workItem from="1527747324162" duration="4319000" />
       <workItem from="1527833517227" duration="6585000" />
       <workItem from="1528304102552" duration="6297000" />
-      <workItem from="1528351340898" duration="4498000" />
+      <workItem from="1528351340898" duration="5372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53346000" />
+    <option name="totallyTimeSpent" value="54220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="779" extended-state="6" />
@@ -633,14 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/repository/LoginRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -659,8 +645,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/RegistrationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="42" column="21" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+        <state relative-caret-position="267">
+          <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding />
         </state>
       </provider>

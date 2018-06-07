@@ -22,10 +22,10 @@ class RegistrationController
         if (isset($_POST['regsubmit'])) {
             //passwort regex: https://stackoverflow.com/questions/8141125/regex-for-password-php
             $pregex = "^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\W])(?=\S*[\d])\S*$^";
-            $uname = $_POST['reguname'];
-            $email = $_POST['regemail'];
-            $password  = $_POST['regpassword'];
-            $redopass = $_POST['redopassword'];
+            $uname = htmlspecialchars($_POST['reguname']);
+            $email = htmlspecialchars($_POST['regemail']);
+            $password  = htmlspecialchars($_POST['regpassword']);
+            $redopass = htmlspecialchars($_POST['redopassword']);
             if ($password == $redopass){
                 if(preg_match($pregex, $password)){
                     $LoginRepository = new LoginRepository();

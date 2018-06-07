@@ -18,8 +18,8 @@ require_once '../repository/LoginRepository.php';
 
       if(isset($_POST['logincheck']))
       {
-          $loginemail = $_POST['loginemail'];
-          $loginpassword  = $_POST['loginpassword'];
+          $loginemail = htmlspecialchars($_POST['loginemail']);
+          $loginpassword  = htmlspecialchars($_POST['loginpassword']);
 
           if(!empty($_POST['loginpassword']) & !empty($_POST['loginemail']))
           {
