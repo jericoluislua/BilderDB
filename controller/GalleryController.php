@@ -32,9 +32,11 @@ class GalleryController
             $desc = htmlspecialchars($_POST['gallerydesc']);
             if(isset($_POST['galleryispublic'])){
                 $pubBool = true;
+                echo "Public gallery \"" . $title . "\" created by " . $_POST['loginemail'];
             }
             else{
                 $pubBool = false;
+                echo "Private gallery \"" . $title . "\" created by" . $_POST['loginemail'];
             }
             $GalleryRepository = new GalleryRepository();
             $GalleryRepository->createGallery($title,$desc,$pubBool);
