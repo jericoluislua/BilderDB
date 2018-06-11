@@ -8,7 +8,7 @@
     $lblClass = "col-md-2";
     $eltClass = "col-md-4";
     $btnClass = "btn btn-success";
-    $form = new Form("/post");
+    $form = new Form("/post/upload");
     $button = new ButtonBuilder();
     echo $form->file()->label('File')->name('fileupload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
     echo $form->input()->label('Title')->name('filetitle')->type('text')->lblClass($lblClass)->eltClass($eltClass);

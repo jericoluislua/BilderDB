@@ -8,13 +8,14 @@ class LoginRepository extends Repository
     protected $tableName = 'user';
     protected $id = 'id';
 
-    public function create($uname, $email, $password)
+    public function create($uname, $email, $password, $isAdmin)
     {
 
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO $this->tableName(username, email, password) VALUES (?, ?, ?)";
+        $query = "INSERT INTO $this->tableName(username, email, password, isAdmin) VALUES (?, ?, ?, ?)";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sss', $uname, $email, $password);
+
+        $statement->bind_param('sssi', $uname, $email, $password, $isAdmin);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
@@ -74,6 +75,12 @@ class LoginRepository extends Repository
     public function changeEmail($email){
         $query = "UPDATE $this->tableName SET email = $email WHERE id = ?";
         $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        $statement->bind_param('s', $email);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $statement->update();
     }
 
     public function changeUsername($uname){

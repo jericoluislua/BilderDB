@@ -16,9 +16,28 @@ class GalleryController
      */
     public function index()
     {
-        $view = new View('gallery');
+        $view = new View('gallery_index');
         $view->title = 'Bilder-DB';
         $view->heading = 'Gallery/ies';
         $view->display();
+    }
+    public function create()
+    {
+        $view = new View('gallery_create');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Create a Gallery';
+        $view->display();
+        if(isset($_POST['gallerycreate'])){
+            $title = htmlspecialchars($_POST['gallerytitle']);
+            $desc = htmlspecialchars($_POST['gallerydesc']);
+            if(isset($_POST['galleryispublic'])){
+                $pubBool = true;
+            }
+            else{
+                $pubBool = false;
+            }
+            $GalleryRepository = new GalleryRepository();
+            $GalleryRepository->createGallery($title,$desc,$pubBool);
+        }
     }
 }

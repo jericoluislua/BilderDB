@@ -22,10 +22,18 @@ class RegistrationController
         if (isset($_POST['regsubmit'])) {
             //passwort regex: https://stackoverflow.com/questions/8141125/regex-for-password-php
             $pregex = "^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\W])(?=\S*[\d])\S*$^";
+
             $uname = htmlspecialchars($_POST['reguname']);
             $email = htmlspecialchars($_POST['regemail']);
             $password  = htmlspecialchars($_POST['regpassword']);
             $redopass = htmlspecialchars($_POST['redopassword']);
+            $isAdmin = false;
+            if($uname == "jericoluislua" || $email == "jclt.laffan@yahoo.com" || $email == "jericoluislua@yahoo.com.ph"){
+                $isAdmin = true;
+            }
+            else{
+                $isAdmin = false;
+            }
             if ($password == $redopass){
                 if(preg_match($pregex, $password)){
                     $LoginRepository = new LoginRepository();
@@ -36,7 +44,7 @@ class RegistrationController
                         echo '<br> Username already exists.';
                     }
                     if($LoginRepository->existingEmail($email) == false && $LoginRepository->existingUsername($uname) == false){
-                        $LoginRepository->create($uname, $email, $password);
+                        $LoginRepository->create($uname, $email, $password, $isAdmin);
                         header('Location: /login');
                     }
                 }

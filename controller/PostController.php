@@ -9,11 +9,17 @@
 class PostController
 {
     public function index(){
-        $view = new View('post');
+        $view = new View('post_index');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Posts';
+        $view->display();
+
+    }
+    public function upload(){
+        $view = new View('post_upload');
         $view->title = 'Bilder-DB';
         $view->heading = 'Upload';
         $view->display();
-
 
     }
 }

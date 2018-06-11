@@ -19,7 +19,12 @@
       $result  = "<div class='form-group'>\n";
       $result .= "<label class='{$this->lblClass} control-label' for='textinput'>{$this->label}</label>\n";
       $result .= "<div class='{$this->eltClass}'>\n";
-      $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
+      if($this->type != 'checkbox'){
+          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
+      }
+      else{
+          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control'>\n";
+      }
       $result .= "</div>\n";
       $result .= "</div>\n";
       return $result;
