@@ -1,6 +1,6 @@
 <?php
-if(isset($_SESSION['LoggedIn'])){
-    echo 'Welcome ' . $_SESSION['LoggedIn'];
+if(isset($_SESSION['loginEmail'])){
+    echo 'Welcome ' . $_SESSION['loginEmail'];
 }
 else{
     echo 'Welcome to BilderDB.';

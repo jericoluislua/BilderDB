@@ -27,7 +27,7 @@ require_once '../repository/LoginRepository.php';
               $valid = $LoginRepository->login($loginemail, $loginpassword);
               if(!empty($valid))
               {
-                  $_SESSION['LoggedIn'] = $loginemail;
+                  $_SESSION['loginEmail'] = $loginemail;
                   header('Location: /');
               }
               else{

@@ -12,12 +12,12 @@ class GalleryRepository extends Repository
 {
     protected $tableName = 'gallery';
     protected $id = 'id';
-
+//how to get id of the logged in acct im stucc
     public function createGallery($title, $desc, $isPub){
         $query = "INSERT INTO $this->tableName(title, description, isPublic) VALUES(?,?,?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssi', $title, $desc, $isPub);
+        $statement->bind_param('ssii', $title, $desc, $isPub);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

@@ -22,8 +22,11 @@
       if($this->type != 'checkbox'){
           $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
       }
-      else{
-          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control'>\n";
+      else if($this->type == 'text' || $this->type == 'email' || $this->type == 'password' || $this->type == 'checkbox'){
+          if ($this->name == 'changeuname' || $this->name == 'changeemail' || $this->name == 'changepassword'){
+              $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control'>\n";
+          }
+          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
       }
       $result .= "</div>\n";
       $result .= "</div>\n";

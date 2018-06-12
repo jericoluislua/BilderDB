@@ -26,7 +26,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <?php
-              if(!isset($_SESSION['LoggedIn'])) {
+              if(!isset($_SESSION['loginEmail'])) {
                   echo "    
                           <li><a href = '/login' >Login</a></li>
                           <li><a href = '/registration'>Registration</a></li>
@@ -35,7 +35,7 @@
               else{
                   echo "
                           <li><a href = '/user' >User</a></li> 
-                          <li><a href = '/post' >Posts</a></li>
+                          <li><a href = '/post' >Post</a></li>
                           <li><a href = '/post/upload' >Upload</a></li>
                           <li><a href = '/gallery' >Gallery</a></li>
                           <li><a href = '/gallery/create' >Create</a></li>

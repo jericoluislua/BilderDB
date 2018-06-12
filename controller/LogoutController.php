@@ -9,9 +9,11 @@
 class LogoutController
 {
     public function index(){
-        if(isset($_SESSION['LoggedIn'])){
+        if(isset($_SESSION['loginEmail'])){
             session_destroy();
-            session_unset($_SESSION['LoggedIn']);
+            session_unset($_SESSION['loginEmail']);
+            session_unset($_SESSION['loginPassword']);
+
             header('Location: /');
         }
     }
