@@ -24,4 +24,5 @@ class GalleryRepository extends Repository
         }
         return $statement->insert_id;
     }
+
 }

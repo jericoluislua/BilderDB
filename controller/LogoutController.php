@@ -12,7 +12,7 @@ class LogoutController
         if(isset($_SESSION['loginEmail'])){
             session_destroy();
             session_unset($_SESSION['loginEmail']);
-            session_unset($_SESSION['loginPassword']);
+            session_unset($_SESSION['isAdmin']);
 
             header('Location: /');
         }

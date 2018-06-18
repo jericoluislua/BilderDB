@@ -33,6 +33,11 @@
                           ";
               }
               else{
+                  if (isset($_SESSION['isAdmin'])){
+                      echo "
+                           <li><a href = '/allusers' > All Users</a></li>
+                      ";
+                  }
                   echo "
                           <li><a href = '/user' >User</a></li> 
                           <li><a href = '/post' >Post</a></li>

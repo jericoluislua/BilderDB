@@ -43,6 +43,7 @@ class RegistrationController
                     if($LoginRepository->existingUsername($uname) == true){
                         echo '<br> Username already exists.';
                     }
+
                     if($LoginRepository->existingEmail($email) == false && $LoginRepository->existingUsername($uname) == false){
                         $LoginRepository->create($uname, $email, $password, $isAdmin);
                         header('Location: /login');
