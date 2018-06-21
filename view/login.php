@@ -8,8 +8,8 @@
   $btnClass = "btn btn-success";
   $form = new Form("/login");
   $button = new ButtonBuilder();
-  echo $form->input()->label('E-Mail')->name('loginemail')->type('email')->lblClass($lblClass)->eltClass($eltClass);
-  echo $form->input()->label('Password')->name('loginpassword')->type('password')->lblClass($lblClass)->eltClass($eltClass);
+  echo $form->input()->label('E-Mail')->name('loginemail')->type('email')->lblClass($lblClass)->eltClass($eltClass)->required('true');
+  echo $form->input()->label('Password')->name('loginpassword')->type('password')->lblClass($lblClass)->eltClass($eltClass)->required('true');
   echo $button->start($lblClass, $eltClass);
   echo $button->label('Login')->name('logincheck')->type('submit')->class('btn-success');
   echo $button->end();

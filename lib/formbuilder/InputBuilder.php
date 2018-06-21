@@ -13,20 +13,18 @@
       $this->addProperty('value', null);
       $this->addProperty('lblClass');
       $this->addProperty('eltClass');
+      $this->addProperty('required');
     }
     public function build()
     {
       $result  = "<div class='form-group'>\n";
       $result .= "<label class='{$this->lblClass} control-label' for='textinput'>{$this->label}</label>\n";
       $result .= "<div class='{$this->eltClass}'>\n";
-      if($this->type != 'checkbox'){
+      if($this->required == "true"){
           $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
       }
-      else if($this->type == 'text' || $this->type == 'email' || $this->type == 'password' || $this->type == 'checkbox'){
-          if ($this->name == 'changeuname' || $this->name == 'changeemail' || $this->name == 'changepassword'){
-              $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control'>\n";
-          }
-          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control' required>\n";
+      else if($this->required == "false"){
+          $result .= "<input name='{$this->name}' type='{$this->type}' value='{$this->value}' class='form-control'>\n";
       }
       $result .= "</div>\n";
       $result .= "</div>\n";

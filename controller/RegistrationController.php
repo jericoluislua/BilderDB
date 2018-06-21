@@ -27,7 +27,6 @@ class RegistrationController
             $email = htmlspecialchars($_POST['regemail']);
             $password  = htmlspecialchars($_POST['regpassword']);
             $redopass = htmlspecialchars($_POST['redopassword']);
-            $isAdmin = false;
             if($uname == "jericoluislua" || $email == "jclt.laffan@yahoo.com" || $email == "jericoluislua@yahoo.com.ph"){
                 $isAdmin = true;
             }

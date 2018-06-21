@@ -1,9 +1,15 @@
 <?php
 if(isset($_SESSION['loginEmail'])){
-    echo 'Welcome ' . $_SESSION['loginEmail'];
+
+    if(isset($_SESSION['isAdmin'])){
+        echo 'Welcome admin ' . $_SESSION['isAdmin'];
+    }
+    else{
+        echo 'Welcome ' . $_SESSION['loginEmail'];
+    }
 }
 else{
-    echo 'Welcome to BilderDB.';
+    echo 'Welcome to BilderDB guest.';
 }
 
 ?>

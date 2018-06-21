@@ -42,6 +42,21 @@ class LoginRepository extends Repository
         return false;
     }
 
+    public function getbyEmail($email){
+        $query = "SELECT $this->id, username FROM $this->tableName WHERE email = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $email);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $row = $result->fetch_object();
+
+        $result->close();
+
+        return $row;
+
+    }
     public function existingEmail($email)
     {
         $query = "SELECT $this->id FROM $this->tableName WHERE email = ?";
@@ -72,23 +87,35 @@ class LoginRepository extends Repository
         return false;
     }
 
-    public function changeEmail($email){
-        $query = "UPDATE $this->tableName SET email = $email WHERE id = ?";
+    public function changeEmail($email, $uid){
+        $query = "UPDATE $this->tableName SET email = ? WHERE id = ?";
         $statement = ConnectionHandler::getConnection()->prepare($query);
 
-        $statement->bind_param('s', $email);
+        $statement->bind_param('si', $email, $uid);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
-        $statement->update();
     }
 
-    public function changeUsername($uname){
-        $query = "UPDATE $this->tableName SET username = $uname WHERE id = ?";
+    public function changeUsername($uname, $uid){
+        $query = "UPDATE $this->tableName SET username = ? WHERE id = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        $statement->bind_param('si', $uname, $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 
-    public function changePassword($password){
-        $query = "UPDATE $this->tableName SET password = $password WHERE id = ?";
+    public function changePassword($password, $uid){
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $query = "UPDATE $this->tableName SET password = ? WHERE id = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        $statement->bind_param('si', $password, $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 
 }

@@ -13,24 +13,24 @@ class FileRepository extends Repository
     protected $tableName = 'post';
     protected $id = 'id';
 
-    public function uploadPost($title, $desc, $uname, $path){
-        $query = "INSERT INTO $this->tableName(title, description, username, path) VALUES(?,?,?,?)";
-        $gall = $_POST['']
-        $target_dir = "images/" . $gall;
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $this->uploader($target_dir,$target_file);
+
+    public function uploadPost($file, $title, $desc){
+        $query = "INSERT INTO $this->tableName(title, description, path, galleryid) VALUES(?,?,?,?)";
+        $gallery = $_POST['galleryselect'];
+        $target_dir = "images/" . $gallery;
+        $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
+        $this->uploader($target_file);
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $title, $desc, $uname, $path);
+        $statement->bind_param('sssi', $title, $desc, $target_file, $gallery);
     }
     //https://www.w3schools.com/Php/php_file_upload.asp
-    public function uploader($target_dir,$target_file){
+    public function uploader($target_file){
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
         if(isset($_POST['filesubmit'])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            $check = getimagesize($_FILES['fileToUpload']['tmp_name']);
             if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
                 echo "File is not an image.";
@@ -43,7 +43,7 @@ class FileRepository extends Repository
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES['fileToUpload']['size'] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -55,7 +55,7 @@ class FileRepository extends Repository
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            echo "There was an error on uploading. Try again.";
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {

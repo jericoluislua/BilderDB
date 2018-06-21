@@ -5,18 +5,19 @@
  * Date: 17.05.2018
  * Time: 08:41
  */
-
-$lblClass = "col-md-2";
-$eltClass = "col-md-4";
-$btnClass = "btn btn-success";
-$form = new Form("/user");
-$button = new ButtonBuilder();
-echo $form->input()->label('Username')->name('changeuname')->type('text')->lblClass($lblClass)->eltClass($eltClass);
-echo $form->input()->label('E-Mail')->name('changeemail')->type('email')->lblClass($lblClass)->eltClass($eltClass);
-echo $form->input()->label('Password')->name('changepassword')->type('password')->lblClass($lblClass)->eltClass($eltClass);
-echo $button->start($lblClass, $eltClass);
-echo $button->label('Change')->name('changeinput')->type('submit')->class('btn-success');
-echo $button->label('Delete Account')->name('deleteacct')->type('button')->class('delete');
-echo $button->end();
-echo $form->end();
+if(isset($_SESSION['loginEmail'])) {
+    $lblClass = "col-md-2";
+    $eltClass = "col-md-4";
+    $btnClass = "btn btn-success";
+    $form = new Form("/user");
+    $button = new ButtonBuilder();
+    echo $form->input()->label('new Username')->name('changeuname')->type('text')->lblClass($lblClass)->eltClass($eltClass)->required('false');
+    echo $form->input()->label('new E-Mail')->name('changeemail')->type('email')->lblClass($lblClass)->eltClass($eltClass)->required('false');
+    echo $form->input()->label('new Password')->name('changepassword')->type('password')->lblClass($lblClass)->eltClass($eltClass)->required('false');
+    echo $button->start($lblClass, $eltClass);
+    echo $button->label('Change')->name('changeinput')->type('submit')->class('btn-success');
+    echo $button->label('Delete Account')->name('deleteacct')->type('button')->class('deletebtn');
+    echo $button->end();
+    echo $form->end();
+}
 ?>

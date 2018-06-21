@@ -39,7 +39,7 @@
    * implementiert werden, welche für alle Tabellen (fast) gleich sind. So müssen
    * diese nicht in jedem Model einzel implementiert werten. Ein Beispiel darür
    * ist das auslesen eines Datensatzes bei dessen id (siehe readById unten). So
-   * könnte mit dem obigen Model bereits ein Bentzer bei dessen id ausgelesen
+   * könnte mit dem obigen Model bereits ein Benutzer bei dessen id ausgelesen
    * werden.
    *
    *   require_once 'model/UserModel.php'
@@ -53,7 +53,7 @@
    *
    *   // User für die Darstellung der View übergeben
    *
-   * Alle Funktionen, welche nich für alle Tabellen funktionieren (z.B. Datensatz
+   * Alle Funktionen, welche nicht für alle Tabellen funktionieren (z.B. Datensatz
    * erstellen, da die Spalten immer unterschiedlich heissen), werden dann im
    * konkreten Model (z.B. UserModel) implementiert.
    *
@@ -87,7 +87,7 @@
     public function readById($id)
     {
       // Query erstellen
-      $query = "SELECT * FROM {$this->tableName} WHERE {$this->tableId}=?";
+      $query = "SELECT * FROM {$this->tableName} WHERE id=?";
   
       // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
       // und die Parameter "binden"
@@ -153,7 +153,7 @@
      */
     public function deleteById($id)
     {
-      $query = "DELETE FROM {$this->tableName} WHERE {$this->tableId}=?";
+      $query = "DELETE FROM {$this->tableName} WHERE id=?";
       $statement = ConnectionHandler::getConnection()->prepare($query);
       $statement->bind_param('i', $id);
   

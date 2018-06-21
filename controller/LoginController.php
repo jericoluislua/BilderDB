@@ -11,11 +11,12 @@ require_once '../repository/LoginRepository.php';
      */
     public function index()
     {
+      $LoginRepository = new LoginRepository();
+
       $view = new View('login');
       $view->title = 'Bilder-DB';
       $view->heading = 'Login';
       $view->display();
-
       if(isset($_POST['logincheck']))
       {
           $loginemail = htmlspecialchars($_POST['loginemail']);
@@ -23,7 +24,6 @@ require_once '../repository/LoginRepository.php';
 
           if((!empty($_POST['loginpassword']) & !empty($_POST['loginemail'])) && filter_var($loginemail, FILTER_VALIDATE_EMAIL))
           {
-              $LoginRepository = new LoginRepository();
               $valid = $LoginRepository->login($loginemail, $loginpassword);
               if(!empty($valid))
               {
