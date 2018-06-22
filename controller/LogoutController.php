@@ -10,6 +10,7 @@ class LogoutController
 {
     public function index(){
         if(isset($_SESSION['loginEmail'])){
+            session_start();
             session_destroy();
             session_unset($_SESSION['loginEmail']);
             session_unset($_SESSION['isAdmin']);

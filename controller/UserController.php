@@ -39,6 +39,10 @@ class UserController
             if(!empty($_POST['changeemail'])){
                 if($LoginRepository->existingEmail($email) == false){
                     $LoginRepository->changeEmail($email, $user->id);
+                    session_destroy();
+                    session_unset($_SESSION['loginEmail']);
+                    session_start();
+                    $_SESSION['loginEmail'] = $email;
                     echo 'Email changed to: ' . $email;
                 }else{
                     echo 'Email already exists.';

@@ -16,6 +16,7 @@ require_once '../repository/LoginRepository.php';
       $view = new View('login');
       $view->title = 'Bilder-DB';
       $view->heading = 'Login';
+      $view->user =
       $view->display();
       if(isset($_POST['logincheck']))
       {
@@ -28,7 +29,7 @@ require_once '../repository/LoginRepository.php';
               if(!empty($valid))
               {
                   $_SESSION['loginEmail'] = $loginemail;
-                  if ($loginemail == "jclt.laffan@yahoo.com" || $loginemail == "jericoluislua@yahoo.com.ph"){
+                  if ($loginemail == "jclt.laffan@yahoo.com" || $loginemail == "jericoluislua@yahoo.com.ph" || $loginemail == "gibbteacher@gibb.ch"){
                       $_SESSION['isAdmin'] = $loginemail;
                   }
                   header('Location: /');

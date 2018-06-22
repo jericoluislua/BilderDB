@@ -14,10 +14,11 @@ class GalleryController
     public function privateGallery(){
         $GalleryRepository = new GalleryRepository();
         $LoginRepository = new LoginRepository();
-
+        $FileRepository = new FileRepository();
         $view = new View('gallery_private');
         $view->title = 'Bilder-DB';
         $view->heading = 'My Galleries';
+        $view->files = $FileRepository->readAll();
         $view->galleries = $GalleryRepository->readAll();
         if(isset($_SESSION['loginEmail'])) {
             $view->user = $LoginRepository->getbyEmail($_SESSION['loginEmail']);
@@ -37,6 +38,7 @@ class GalleryController
     {
 
         $LoginRepository = new LoginRepository();
+        $GalleryRepository = new GalleryRepository();
         $view = new View('gallery_create');
         $view->title = 'Bilder-DB';
         $view->heading = 'Create a Gallery';
@@ -45,16 +47,24 @@ class GalleryController
             $title = htmlspecialchars($_POST['gallerytitle']);
             $desc = htmlspecialchars($_POST['gallerydesc']);
             $user = $LoginRepository->getbyEmail($_SESSION['loginEmail']);
-            if(isset($_POST['galleryispublic'])){
-                $pubBool = true;
-                echo "Public gallery \"" . $title . "\" created by " . $_SESSION['loginEmail'];
+
+            if ($GalleryRepository->existingTitle($title)){
+                echo  "\"" . $title . "\" already exists.";
             }
             else{
-                $pubBool = false;
-                echo "Private gallery \"" . $title . "\" created by " . $_SESSION['loginEmail'];
+                if(isset($_POST['galleryispublic'])){
+                    $pubBool = true;
+                    echo "Public gallery \"" . $title . "\" created by " . $_SESSION['loginEmail'];
+                }
+                else{
+                    $pubBool = false;
+                    echo "Private gallery \"" . $title . "\" created by " . $_SESSION['loginEmail'];
+                }
+                $userpath = "images/" . $_SESSION['loginEmail'] . "/";
+                $gallerypath = str_replace(' ', '_',$title) . "/";
+
+                $GalleryRepository->createGallery($title,$desc,$pubBool, $user->id);
             }
-            $GalleryRepository = new GalleryRepository();
-            $GalleryRepository->createGallery($title,$desc,$pubBool, $user->id);
         }
     }
     public function delete()
@@ -63,6 +73,6 @@ class GalleryController
         $GalleryRepository = new GalleryRepository();
         $GalleryRepository->deleteById($_GET['id']);
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /gallery');
+        header('Location: /gallery/privateGallery');
     }
 }

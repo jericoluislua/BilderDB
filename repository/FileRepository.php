@@ -14,14 +14,31 @@ class FileRepository extends Repository
     protected $id = 'id';
 
 
-    public function uploadPost($file, $title, $desc){
+    public function uploadPost($title, $desc){
         $query = "INSERT INTO $this->tableName(title, description, path, galleryid) VALUES(?,?,?,?)";
         $gallery = $_POST['galleryselect'];
-        $target_dir = "images/" . $gallery;
-        $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
-        $this->uploader($target_file);
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sssi', $title, $desc, $target_file, $gallery);
+        $userpath = "images/" . $_SESSION['loginEmail'] . "/";
+        $target_dir = $userpath . $gallery . "/";
+
+        if(!is_dir($userpath)){
+            mkdir($userpath, 0777);
+            mkdir($userpath . $target_dir, 0777);
+        }
+        else{
+            if(!is_dir($target_dir)){
+                mkdir($target_dir, 0777);
+            }
+        }
+        if(isset($_FILES['fileToUpload']['name'])){
+            $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
+            $target_file = $target_dir . $title . $imageFileType;
+            $this->uploader($target_file);
+            $statement = ConnectionHandler::getConnection()->prepare($query);
+            $statement->bind_param('sssi', $title, $desc, $target_file, $gallery);
+            if (!$statement->execute()) {
+                throw new Exception($statement->error);
+            }
+        }
     }
     //https://www.w3schools.com/Php/php_file_upload.asp
     public function uploader($target_file){
@@ -64,5 +81,19 @@ class FileRepository extends Repository
                 echo "Sorry, there was an error uploading your file.";
             }
         }
+    }
+    public function existingTitle($title)
+    {
+        $query = "SELECT $this->id FROM $this->tableName WHERE title = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $title);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        if($result->num_rows >= 1){
+            return true;
+        }
+        return false;
     }
 }

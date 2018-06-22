@@ -42,7 +42,6 @@
                   }
                   echo "
                           <li><a href = '/user' >User</a></li> 
-                          <li><a href = '/post' >Post</a></li>
                           <li><a href = '/post/upload' >Upload</a></li>
                           <li><a href = '/gallery/privateGallery' >Gallery</a></li>
                           <li><a href = '/gallery/create' >Create</a></li>

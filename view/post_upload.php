@@ -12,9 +12,6 @@ if(isset($_SESSION['loginEmail'])) {
     $form = new Form("/post/upload");
     $button = new ButtonBuilder();
     $select = new SelectBuilder();
-
-
-
     echo $form->file()->label('File')->name('fileToUpload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
     echo $form->input()->label('Title')->name('filetitle')->type('text')->lblClass($lblClass)->eltClass($eltClass)->required('true');
     echo $form->input()->label('Description')->name('filedesc')->type('text')->lblClass($lblClass)->eltClass($eltClass)->required('true');
