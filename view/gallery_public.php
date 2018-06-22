@@ -3,11 +3,10 @@
         <?php if($gallery->isPublic == 1): ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p class="gallery">
                     <p class="gtitle">
                         <?= $gallery->title; ?>
                     </p>
-                    <p class="gcreator">
+                    <p id="gcreator">
                         by <?= $gallery->username; ?>
                     </p>
                     </br>
@@ -15,13 +14,26 @@
                         <?= $gallery->description; ?>
                     </p>
                 </div>
-                <div class="panel-body">
-
-                </div>
+                <?php foreach ( $files as $file) {
+                    if($file->galleryid == $gallery->id){?>
+                        <div class="panel-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <p class="ftitle">
+                                        <?= $file->title; ?>
+                                    </p>
+                                    </br>
+                                    <p class="fdesc">
+                                        <?= $file->description; ?>
+                                    </p>
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        <img class="file"src='<?=$file->path; ?>'/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } }?>
             </div>
-        <?php endif;?>
-    <?php } }else{ ?>
-    <div class="nogallery">
-        <h3>No gallery created.</h3>
-    </div>
-<?php } ?>
+<?php endif; } }?>

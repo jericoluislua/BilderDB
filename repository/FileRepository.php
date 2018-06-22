@@ -31,7 +31,7 @@ class FileRepository extends Repository
         }
         if(isset($_FILES['fileToUpload']['name'])){
             $imageFileType = strtolower(pathinfo($_FILES['fileToUpload']['name'],PATHINFO_EXTENSION));
-            $target_file = $target_dir . $title . $imageFileType;
+            $target_file = $target_dir . $title .".". $imageFileType;
             $this->uploader($target_file);
             $statement = ConnectionHandler::getConnection()->prepare($query);
             $statement->bind_param('sssi', $title, $desc, $target_file, $gallery);

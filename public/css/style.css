@@ -35,11 +35,23 @@ body {
   display: inline;
   margin: 0;
 }
-.gcreator{
+#gcreator{
   display: inline;
   font-size: 14px;
 }
 .gdesc{
+  display: inline;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.ftitle{
+  font-weight: bold;
+  font-size: 18px;
+  display: inline;
+  margin: 0;
+}
+.fdesc{
   display: inline;
   font-style: italic;
   font-size: 16px;
@@ -53,5 +65,8 @@ body {
 .error{
   color: red;
   font-weight: bold;
-
+}
+.file{
+  max-width: 300px;
+  min-width: 300px;
 }

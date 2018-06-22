@@ -28,15 +28,11 @@ class PostController
                 $title = $_POST['filetitle'];
                 $description = $_POST['filedesc'];
                 if(preg_match("/[\"\*\/\:\<\>\?\'\|]+/", $title)){
-                    preg_replace("/[\"\*\/\:\<\>\?\'\|]+/", '_', $title);
-                    if($FileRepository->existingTitle($title) == false){
-                        $FileRepository->uploadPost($title, $description);
-                    }
-                    else{ echo 'File Title already exists.'; }
+                    echo "Your file has the following unusable chars \\ * / : < > ? ' ^ | ";
                 }
                 else{
                     if($FileRepository->existingTitle($title) == false){
-                        $FileRepository->uploadPost($title, $description);
+                        $FileRepository->uploadPost(str_replace(' ', '_', $title), $description);
                     }
                     else{ echo 'File Title already exists.'; }
                 }
@@ -45,10 +41,11 @@ class PostController
     }
     public function delete()
     {
-
-        $FileRepository = new GalleryRepository();
-        $FileRepository->deleteById($_GET['id']);
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /gallery/privateGallery');
+        $FileRepository = new FileRepository();
+        unlink($_GET['fpath']);
+        var_dump($_GET['fpath']);
+        $FileRepository->deleteById($_GET['fid']);
+        header('Location: /allgalleries');
     }
+
 }

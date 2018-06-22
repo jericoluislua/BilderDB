@@ -20,23 +20,23 @@ class GalleryController
         $view->heading = 'My Galleries';
         $view->files = $FileRepository->readAll();
         $view->galleries = $GalleryRepository->readAll();
-        if(isset($_SESSION['loginEmail'])) {
-            $view->user = $LoginRepository->getbyEmail($_SESSION['loginEmail']);
-        }
+        //if(isset($_SESSION['loginEmail'])) {
+        //    $view->user = $LoginRepository->getbyEmail($_SESSION['loginEmail']);
+        //}
         $view->display();
     }
     public function publicGallery(){
         $GalleryRepository = new GalleryRepository();
-
+        $FileRepository = new FileRepository();
         $view = new View('gallery_public');
         $view->title = 'Bilder-DB';
         $view->heading = 'Public Galleries';
+        $view->files = $FileRepository->readAll();
         $view->galleries = $GalleryRepository->readAll();
         $view->display();
     }
     public function create()
     {
-
         $LoginRepository = new LoginRepository();
         $GalleryRepository = new GalleryRepository();
         $view = new View('gallery_create');
@@ -60,8 +60,6 @@ class GalleryController
                     $pubBool = false;
                     echo "Private gallery \"" . $title . "\" created by " . $_SESSION['loginEmail'];
                 }
-                $userpath = "images/" . $_SESSION['loginEmail'] . "/";
-                $gallerypath = str_replace(' ', '_',$title) . "/";
 
                 $GalleryRepository->createGallery($title,$desc,$pubBool, $user->id);
             }
@@ -72,7 +70,6 @@ class GalleryController
 
         $GalleryRepository = new GalleryRepository();
         $GalleryRepository->deleteById($_GET['id']);
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /gallery/privateGallery');
     }
 }
